@@ -17,7 +17,7 @@ pipeline{
     stages{
         stage('clone repo'){
             steps{
-                git 'https://github.com/Sonal0409/DevOpsCodeDemo.git'
+                git 'https://github.com/puritanviitm/jenkins-demo.git'
             }
         }
         stage('build the code'){
@@ -35,7 +35,7 @@ pipeline{
         stage('Push image to dockerhub'){
             steps{
                 sh 'docker tag myimagejenkins edu123/myimagejenkins:$BUILD_NUMBER'
-                sh 'docker login --username edu123 --password Edureka@123'
+                sh 'docker login --username edu123 --password ka@123'
                 sh 'docker push edu123/myimagejenkins:$BUILD_NUMBER'
             }
         }
