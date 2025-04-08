@@ -10,7 +10,7 @@ pipeline{
 	    
                steps{
 		 echo 'cloning the repo'
-                 git 'https://github.com/puritanviitm/jenkins-demo.git'
+                 git branch: 'main', url: 'https://github.com/puritanviitm/jenkins-demo.git'
               }
           }
           stage('Compile'){
