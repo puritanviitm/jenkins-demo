@@ -1,50 +1,45 @@
 
 pipeline{
+    
     tools{
-       
         maven 'mymaven'
     }
-	agent any
-      stages{
-           stage('Checkout the code'){
-	    
-               steps{
-		 echo 'cloning the repo'
-                 git branch: 'main', url: 'https://github.com/puritanviitm/jenkins-demo.git'
-              }
-          }
-          stage('Compile'){
-             
-              steps{
-                  echo 'complie the code again..'
-                  sh 'mvn compile'
-	      }
-          }
-          stage('CodeReview'){
-		  
-              steps{
-		    
-		  echo 'codeReview'
-                  sh 'mvn pmd:pmd'
-              }
-          }
-           stage('UnitTest'){
-		  
-              steps{
-	         
-                  sh 'mvn test'
-              }
-          
-          }
-        
-          stage('Package'){
-		  
-              steps{
-		  
-                  sh 'mvn package'
-              }
-          }
-	     
-          
-      }
+   // in agent any = any available server 
+    agent none
+   stages{
+       stage('Clone a Repo'){
+         agent {label 'linux_node'}
+           steps{
+               git 'https://github.com/puritanviitm/jenkins-demo.git'
+           }
+       }
+       
+       stage('Compile the code'){
+         agent any
+           steps{
+               sh 'mvn compile'
+           }
+       }
+       
+       stage('CodeReview'){
+         agent {label 'linux_node'}
+           steps{
+               sh 'mvn pmd:pmd'
+           }
+       }
+       
+       stage('Unit Test'){
+         agent {label 'linux_node'}
+           steps{
+               sh 'mvn test'
+           }
+       }
+       
+       stage('Package'){
+         agent any
+           steps{
+               sh 'mvn package'
+           }
+       }
+       }
 }
