@@ -11,7 +11,8 @@ pipeline{
        stage('Clone a Repo'){
          //agent {label 'linux_node'}
            steps{
-               git 'https://github.com/puritanviitm/jenkins-demo.git'
+               git branch: 'main', url: 'https://github.com/puritanviitm/maven-web-application.git'
+
            }
        }
        
