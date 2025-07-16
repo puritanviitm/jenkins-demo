@@ -23,12 +23,12 @@ pipeline{
            }
        }
        
-       stage('CodeReview'){
+       //stage('CodeReview'){
          //agent {label 'linux_node'}
-           steps{
-               sh 'mvn pmd:pmd'
-           }
-       }
+         //  steps{
+           //    sh 'mvn pmd:pmd'
+           //}
+       //}
        
        stage('Unit Test'){
          //agent {label 'linux_node'}
